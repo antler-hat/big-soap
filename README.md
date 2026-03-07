@@ -9,6 +9,12 @@ Static HTML + Sass scaffold for a simple multipage site.
 - `npm run dev` watches `src/`, rebuilds on change, and serves `dist/` locally.
 - `npm run clean` removes generated output.
 
+## GitHub Pages
+
+- The repo includes `.github/workflows/pages.yml`, which builds the site on pushes to `main` and deploys `dist/` to GitHub Pages.
+- In the GitHub repository settings, Pages should use `GitHub Actions` as the build and deployment source.
+- Because the site uses relative asset and page links, it will serve correctly from the project Pages URL under `/big-soap/`.
+
 ## Structure
 
 - `src/` authored source files
