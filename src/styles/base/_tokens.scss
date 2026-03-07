@@ -1,0 +1,47 @@
+
+// Typography
+$font-weight: (
+  thin: 200,
+  extralight: 300,
+  light: 400,
+  normal: 500,
+  medium: 600,
+  semibold: 700,
+  bold: 800,
+  extrabold: 900
+);
+
+$font-width: (
+  condensed: 75,
+  normal: 100,
+  expanded: 125
+);
+
+:root {
+  --black: #000000;
+  --yellow: #e1d312;
+}
+
+:root {
+  color-scheme: dark;
+  --page-bg: var(--yellow);
+  --surface: rgba(255, 255, 255, 0.7);
+  --surface-border: rgba(29, 32, 36, 0.08);
+  --text: var(--black);
+  --muted: #5f646b;
+  --accent: #d0e112;
+  --accent-soft: #f2d0c1;
+  --shadow: 0 20px 60px rgba(34, 31, 28, 0.08);
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --site-width: 1120px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --font-body: "Helvetica Neue", "Arial", sans-serif;
+}

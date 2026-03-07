@@ -1,0 +1,16 @@
+{
+  "name": "big-soap-v2",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "clean": "node ./scripts/clean.mjs",
+    "build": "node ./scripts/build.mjs",
+    "dev": "node ./scripts/dev.mjs"
+  },
+  "devDependencies": {
+    "sass": "^1.97.3"
+  }
+}
