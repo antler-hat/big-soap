@@ -66,3 +66,9 @@ body.page-random-album-policy {
     backdrop-filter: blur(10px);
   }
 }
+
+.page-random-album.page-random-album-policy {
+  .container {
+    max-width: 900px;
+  }
+}
