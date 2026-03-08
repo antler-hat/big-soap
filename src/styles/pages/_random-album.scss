@@ -17,6 +17,20 @@ body.page-random-album {
     gap: var(--space-4);
   }
 
+  .page-link {
+    color: #d9f5f2;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  .page-link:hover {
+    color: #ffffff;
+  }
+
+  .back-link {
+    margin-bottom: var(--space-6);
+  }
+
     @media screen and (max-width: $screen-sm-max) {
         .container {
             justify-content: flex-start;
@@ -32,5 +46,23 @@ body.page-random-album {
     p {
       color: #90b3b5;
     }
+}
 
+body.page-random-album-policy {
+  .container {
+    gap: var(--space-4);
+    max-width: 720px;
+    min-height: 100vh;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .policy-card {
+    width: 100%;
+    padding: var(--space-6);
+    border: 1px solid var(--surface-border);
+    border-radius: 20px;
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+  }
 }
