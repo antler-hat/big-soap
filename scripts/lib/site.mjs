@@ -27,17 +27,18 @@ export async function buildSite() {
 }
 
 async function copyHtmlPages() {
-  const entries = await readdir(srcDir, { withFileTypes: true });
+  const htmlFiles = await listHtmlFiles(srcDir);
 
   await Promise.all(
-    entries
-      .filter((entry) => entry.isFile() && path.extname(entry.name) === ".html")
-      .map(async (entry) => {
-        const sourcePath = path.join(srcDir, entry.name);
-        const targetPath = path.join(distDir, entry.name);
-        const html = await readFile(sourcePath, "utf8");
-        await writeFile(targetPath, html);
-      })
+    htmlFiles.map(async (sourcePath) => {
+      const relativePath = path.relative(srcDir, sourcePath);
+      const targetPath = path.join(distDir, relativePath);
+      const targetDir = path.dirname(targetPath);
+      const html = await readFile(sourcePath, "utf8");
+
+      await mkdir(targetDir, { recursive: true });
+      await writeFile(targetPath, html);
+    })
   );
 }
 
@@ -61,4 +62,25 @@ async function compileStyles() {
 
   await writeFile(cssOutputFile, cssWithMapReference, "utf8");
   await writeFile(cssMapFile, JSON.stringify(result.sourceMap, null, 2), "utf8");
+}
+
+async function listHtmlFiles(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const htmlFiles = await Promise.all(
+    entries.map(async (entry) => {
+      const entryPath = path.join(directory, entry.name);
+
+      if (entry.isDirectory()) {
+        return listHtmlFiles(entryPath);
+      }
+
+      if (entry.isFile() && path.extname(entry.name) === ".html") {
+        return [entryPath];
+      }
+
+      return [];
+    })
+  );
+
+  return htmlFiles.flat();
 }

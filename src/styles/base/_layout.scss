@@ -1,58 +1,36 @@
-// TODO: Migrate legacy Sass @import and global map-get usage before Dart Sass 3.0.
-@import 'tokens.scss';
+@use "./_tokens.scss" as *;
+
+html {
+  font-size: 16px;
+}
 
 body {
   background: var(--page-bg);
   color: var(--text);
   font-family: "Zalando Sans", sans-serif;
   line-height: 1.5;
-  font-weight: map-get($font-weight, normal);
+  font-weight: $font-normal;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+p + p {
+  margin-top: var(--space-2);
+}
+
 .container {
+  height: 100%;
   margin: 0 auto;
   padding: var(--space-2) var(--space-8);
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.fancy-heading {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: var(--space-6);
-  font-weight: map-get($font-weight, extrabold);
-  line-height: .75;
-  margin-bottom: 1vh;
-
-  span.heading-big {
-    display: block;
-    font-size: 40vw;
-    margin-bottom: -1vh;
-    letter-spacing: -0.07em;
-
-  }
-
-  span.heading-soap {
-    display: block;
-    font-size: 18vw;
-    font-variation-settings: "wdth" map-get($font-width, expanded);
-    letter-spacing: -0.09em;
-  }
+  align-items: start;
+  justify-content: center ;
 }
 
-h2 {
-  text-align: center;
-  font-weight: map-get($font-weight, extrabold);
-  margin-bottom: 0;
-  line-height: 1;
-}
-
-.email {
-  text-align: center;
-  font-size: 0.9rem;
-  font-weight: 500;
+.text-sm {
+  font-size: 0.8rem;
 }

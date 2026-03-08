@@ -20,16 +20,10 @@ await runBuild("initial");
 
 const server = http.createServer(async (req, res) => {
   const requestUrl = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
-  let relativePath = decodeURIComponent(requestUrl.pathname);
-
-  if (relativePath === "/") {
-    relativePath = "/index.html";
-  }
-
-  const filePath = path.join(distDir, relativePath);
+  const relativePath = decodeURIComponent(requestUrl.pathname);
 
   try {
-    await access(filePath);
+    const filePath = await resolveRequestPath(relativePath);
     const body = await readFile(filePath);
     res.writeHead(200, { "Content-Type": contentTypeFor(filePath) });
     res.end(body);
@@ -116,6 +110,41 @@ function contentTypeFor(filePath) {
     default:
       return "application/octet-stream";
   }
+}
+
+async function resolveRequestPath(relativePath) {
+  const candidatePaths = requestCandidates(relativePath).map((candidatePath) =>
+    path.join(distDir, candidatePath)
+  );
+
+  for (const candidatePath of candidatePaths) {
+    try {
+      await access(candidatePath);
+      return candidatePath;
+    } catch {
+      continue;
+    }
+  }
+
+  throw new Error("Not found");
+}
+
+function requestCandidates(relativePath) {
+  if (relativePath === "/") {
+    return ["index.html"];
+  }
+
+  const normalizedPath = relativePath.replace(/^\/+/, "");
+
+  if (path.extname(normalizedPath)) {
+    return [normalizedPath];
+  }
+
+  if (relativePath.endsWith("/")) {
+    return [`${normalizedPath}index.html`];
+  }
+
+  return [`${normalizedPath}.html`, path.join(normalizedPath, "index.html")];
 }
 
 function shutdown() {

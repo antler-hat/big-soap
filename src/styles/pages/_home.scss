@@ -1,0 +1,46 @@
+@use "../base/tokens" as *;
+
+.page-home {
+
+    .container {
+        align-items: center;
+    }
+
+    h1.fancy-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--space-6);
+    font-weight: $font-extrabold;
+    line-height: .75;
+    margin-bottom: 1vh;
+
+        span.heading-big {
+            display: block;
+            font-size: 40vw;
+            margin-bottom: -1vh;
+            letter-spacing: -0.07em;
+
+        }
+
+        span.heading-soap {
+            display: block;
+            font-size: 18vw;
+            font-variation-settings: "wdth" $font-expanded;
+            letter-spacing: -0.09em;
+        }
+    }
+
+    h2.fancy-subheading {
+        text-align: center;
+        font-weight: $font-extrabold;
+        margin-bottom: 0;
+        line-height: 1;
+    }
+
+    .email {
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+}

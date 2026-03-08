@@ -1,21 +1,21 @@
-
 // Typography
-$font-weight: (
-  thin: 200,
-  extralight: 300,
-  light: 400,
-  normal: 500,
-  medium: 600,
-  semibold: 700,
-  bold: 800,
-  extrabold: 900
-);
+$font-thin: 200;
+$font-extralight: 300;
+$font-light: 400;
+$font-normal: 500;
+$font-medium: 600;
+$font-semibold: 700;
+$font-bold: 800;
+$font-extrabold: 900;
 
-$font-width: (
-  condensed: 75,
-  normal: 100,
-  expanded: 125
-);
+$font-condensed: 75;
+$font-normal: 100;
+$font-expanded: 125;
+
+$screen-sm-max: 640px;
+$screen-md-max: 768px;
+$screen-lg-max: 1024px;
+$screen-xl-max: 1280px;
 
 :root {
   --black: #000000;

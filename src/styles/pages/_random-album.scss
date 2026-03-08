@@ -1,0 +1,31 @@
+@use "../base/tokens" as *;
+
+body.page-random-album {
+  --page-bg: #001314;
+  --text: #FFFFFF;
+  --surface: rgba(255, 255, 255, 0.1);
+  --surface-border: rgba(255, 255, 255, 0.2);
+
+  .container {
+    max-width: 540px;
+    justify-content: flex-start;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+    @media screen and (max-width: $screen-sm-max) {
+        .container {
+            justify-content: flex-start;
+            flex-grow: 1;
+        }
+    }
+
+    p {
+      color: #90b3b5;
+    }
+
+}
