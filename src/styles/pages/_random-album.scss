@@ -8,7 +8,8 @@ body.page-random-album {
 
   .container {
     max-width: 540px;
-    justify-content: flex-start;
+    justify-content: center;
+    flex-grow: 1;
   }
 
   .header {
@@ -22,32 +23,45 @@ body.page-random-album {
     text-decoration-thickness: 0.08em;
     text-underline-offset: 0.18em;
   }
-
+  
   .page-link:hover {
     color: #ffffff;
   }
-
+  
   .back-link {
     margin-bottom: var(--space-6);
   }
-
-    @media screen and (max-width: $screen-sm-max) {
-        .container {
-            justify-content: flex-start;
-            flex-grow: 1;
-        }
-
-        .header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-    }
-
-    p {
-      color: #90b3b5;
-    }
+  
+  p {
+    color: #90b3b5;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    justify-content: center;
+  }
+  .footer {
+    flex-grow: 0;
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
 }
 
+
+  @media screen and (max-width: $screen-sm-max) {
+      .main-content {
+          justify-content: flex-start !important;
+      }
+
+      .header {
+          flex-direction: column;
+          align-items: flex-start;
+      }
+  }
+  
 body.page-random-album-policy {
   .container {
     gap: var(--space-4);

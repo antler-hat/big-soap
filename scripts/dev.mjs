@@ -23,6 +23,14 @@ const server = http.createServer(async (req, res) => {
   const relativePath = decodeURIComponent(requestUrl.pathname);
 
   try {
+    const redirectPath = await canonicalDirectoryPath(relativePath);
+
+    if (redirectPath) {
+      res.writeHead(308, { Location: `${redirectPath}${requestUrl.search}` });
+      res.end();
+      return;
+    }
+
     const filePath = await resolveRequestPath(relativePath);
     const body = await readFile(filePath);
     res.writeHead(200, { "Content-Type": contentTypeFor(filePath) });
@@ -127,6 +135,25 @@ async function resolveRequestPath(relativePath) {
   }
 
   throw new Error("Not found");
+}
+
+async function canonicalDirectoryPath(relativePath) {
+  if (relativePath === "/" || relativePath.endsWith("/")) {
+    return null;
+  }
+
+  const normalizedPath = relativePath.replace(/^\/+/, "");
+
+  if (path.extname(normalizedPath)) {
+    return null;
+  }
+
+  try {
+    await access(path.join(distDir, normalizedPath, "index.html"));
+    return `${relativePath}/`;
+  } catch {
+    return null;
+  }
 }
 
 function requestCandidates(relativePath) {
